@@ -1,0 +1,12 @@
+{
+    "framework": "tensorrt",
+    "source": "data/cat.jpg",
+    "application": {
+        "name": "default"
+    },
+    "prim": {
+        "model_json": "./task/classification-sample/classification.json"
+    },
+    "name": "classification-sample",
+    "source_type": "Image"
+}

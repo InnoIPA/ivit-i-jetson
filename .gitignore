@@ -1,0 +1,38 @@
+# --------------------------------------
+# Python Cache
+__pycahe__
+**/__pycahe__
+**/*/__pycahe__
+**/*/*.pyc
+
+# --------------------------------------
+# Plugins
+**/*/*.so
+**/*/*.o
+**/*.so
+**/*.o
+# --------------------------------------
+# Tasks
+
+task/test_*
+task/temp_*
+task/test-*
+task/temp-*
+test-*
+
+# --------------------------------------
+# Model and Data
+model/
+data/
+
+# --------------------------------------
+# Verify
+docker/inno_verify
+
+# --------------------------------------
+# Others
+bk/
+release/
+*.log
+temp/
+ivit_i_temp/
