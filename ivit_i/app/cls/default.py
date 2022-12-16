@@ -69,11 +69,12 @@ class Default(App):
             else:
                 print("Could not find {} in palette".format(label))
 
-            if draw:
-                frame = draw_text(
-                    frame, 
-                    content, 
-                    (xmin, ymin),  trg_color)
+            if not draw: continue
+
+            frame = draw_text(
+                frame, 
+                content, 
+                (xmin, ymin),  trg_color)
 
         return frame, self.text_draw
         
