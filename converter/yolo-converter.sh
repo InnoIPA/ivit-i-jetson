@@ -29,9 +29,9 @@ printd "Darknet plugins are ready"
 
 # Convert Model
 printd "YOLO 2 ONNX ... "
-python3 ./plugins/darknet-yolo/yolo_to_onnx.py -m "${MODEL}" >/dev/null
+python3 ./plugins/darknet-yolo/yolo_to_onnx.py -m "${MODEL}"
 printd "YOLO 2 ONNX ... Done"
 
 printd "ONNX 2 TensorRT ... "
-python3 ./plugins/darknet-yolo/onnx_to_tensorrt.py -m "${MODEL}" > /dev/null
+python3 ./plugins/darknet-yolo/onnx_to_tensorrt.py -m "${MODEL}"
 printd "ONNX 2 TensorRT ... Done"
