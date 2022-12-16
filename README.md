@@ -31,28 +31,50 @@ iVIT-I for NVIDIA Jetson platform
 
     * Run container with **web api**
         ```bash
-        ./docker/run.sh
+        sudo ./docker/run.sh
         ```
 
     * Run container with **command line mode**
         ```bash
-        ./docker/run.sh -c
+        sudo ./docker/run.sh -c
         ```
 
     * Run container without initialize sample
         ```bash
-        ./docker/run.sh -nc
+        sudo ./docker/run.sh -n -c
 
         # if you need to initialize samples
         ./init_samples.sh
-
         # if you need to launch web api
         ./exec_web_api.sh
         ```
 
     * Run docker container step by step for developer
 
-        Here is the [documentation](docs/activate_env_for_developer.md) explaining the workflow of `build docker image` and `run docker container`.
+        Here is the [documentation](docs/activate_env_for_developer.md) explaining the workflow of `run docker container`.
+
+        
+# Run Samples
+* Please follow the `README.md` in each samples, the common workflow like below
+    1. Enter docker container.
+    2. Choose a sample.
+    3. Download the model.
+    4. Convert the model if needed.
+    5. Using [demo.py](./demo.py) to run the sample.
+        * For example: `python3 demo.py -c ${TASK}.json`
+        * `-s` run without display, only console output.
+        * `-r` run with RTSP ([`rtsp://localhost:8554/test`](rtsp://localhost:8554/test)) .
+
+* More detail
+    | name | describe 
+    | ---- | -------- 
+    | [classification-sample](task/classification-sample/README.md)    |  Classfication sample.  
+    | [yolov3-tiny](task/yolov3-tiny-sample/README.md)   | The objected detection sample which trained from `Darknet`.
+    | [yolov4-tiny](task/yolov4-tiny-sample/README.md)   | The objected detection sample which trained from `Darknet`.
+    | [yolov4](task/yolov4-sample/README.md)   | The objected detection sample which trained from `Darknet`.
+    | [wrong-side-detect](task/wrong-side-detect/README.md)   | The application sample of detecting moving direction.
+    | [traffic-flow-detect](task/traffic-flow-detect/README.md)   | The application sample of tracking object.
+    | [parking-lot-detect](task/parking-lot-detect/README.md)   | The application sample of detecting object is in area or not.
 
 # Fast Testing
 We provide the fast-test for each sample, please check [here](./test/README.md).
@@ -67,5 +89,7 @@ We provide the fast-test for each sample, please check [here](./test/README.md).
 </details>
 <br>
 
-# Reference
-- Using [tensorrt_demos](https://github.com/jkjung-avt/tensorrt_demos) to get tensorrt C++ api to fit the darknet model.
+# Credit
+* Using [aler9/rtsp-simple-server](https://github.com/aler9/rtsp-simple-server) to handle RTSP stream.
+* Convert to WebRTC by using [deepch/RTSPtoWeb](https://github.com/deepch/RTSPtoWeb).
+* Convert TensorRT egnine from darknet referring from [jkjung-avt/tensorrt_demos](https://github.com/jkjung-avt/tensorrt_demos)
