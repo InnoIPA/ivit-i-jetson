@@ -5,7 +5,7 @@ Classification model which trained from NVIDIA TAO or iTAO.
     ```bash
     cd /path/to/iVIT-I
     # for desktop user
-    ./docker/run.sh -c
+    sudo ./docker/run.sh -c -n
     ```
 
 ## For Sample Onnx Model
@@ -24,7 +24,6 @@ Classification model which trained from NVIDIA TAO or iTAO.
     ```bash
     /usr/src/tensorrt/bin/trtexec \
     --onnx=/workspace/model/resnet/resnet34.onnx \
-    --optShapes \
     --saveEngine=/workspace/model/resnet/resnet34.trt
     ```
     * GTX 1050Ti Convert ResNet34 Cost: About 30 sec.
@@ -32,7 +31,7 @@ Classification model which trained from NVIDIA TAO or iTAO.
 3. Prepare the application configuration `task.json`
     
     > Notice: 
-    > if you only want to run with `tensorrt_demo.py`, you could ignore the option below: `category`, `application`, `name`, `source_type`.
+    > if you only want to run with `demo.py`, you could ignore the option below: `category`, `application`, `name`, `source_type`.
 
     ```json
     {
@@ -126,9 +125,9 @@ Classification model which trained from NVIDIA TAO or iTAO.
     model_path=<path/to/engine>
     label_path=<path/to/label>
     ```
-5. Run tensorrt_demo.py
+5. Run demo.py
     ```
-    $ python3 tensorrt_demo.py -c task/classification-sample/task.json
+    $ python3 demo.py -c task/classification-sample/task.json
     ```
 
 ## For Developer ( TAO )
