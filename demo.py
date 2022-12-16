@@ -55,6 +55,19 @@ def check_info(info):
     
     return True
 
+def get_gst_pipeline(rtsp_url):
+    """
+    5M = 4096000
+    """
+    return \
+        'appsrc ' + \
+        '! videoconvert ' + \
+        '! nvvidconv ! video/x-raw(memory:NVMM), format=(string)I420 ' + \
+        '! nvv4l2h264enc bitrate=40000000 insert-sps-pps=true idrinterval=30 profile=0 ' + \
+        '! video/x-h264, stream-format=(string)byte-stream ' + \
+        f' ! rtspclientsink location={rtsp_url}'
+
+
 def main(args):
 
     # Get Mode
@@ -78,24 +91,19 @@ def main(args):
     src = Pipeline(total_conf['source'], total_conf['source_type'])
     src.start()
     (src_hei, src_wid), src_fps = src.get_shape(), src.get_fps()
-    
+
+    # Inference Mode: Async or Sync ( Default )
+    if args.mode==1:
+        trg.set_async_mode()
+
     # Concate RTSP pipeline
     if mode==RTSP:
-
-        gst_pipeline = \
-            'appsrc ' + \
-            '! videoconvert ' + \
-            '! nvvidconv ! video/x-raw(memory:NVMM), format=(string)I420 ' + \
-            '! nvv4l2h264enc bitrate=1000000 insert-sps-pps=true idrinterval=30 profile=0 ' + \
-            '! video/x-h264, stream-format=(string)byte-stream ' + \
-            f' ! rtspclientsink location=rtsp://{args.ip}:{args.port}{args.name}'
-
+        rtsp_url = f"rtsp://{args.ip}:{args.port}{args.name}"
+        gst_pipeline = get_gst_pipeline(rtsp_url)
         out = cv2.VideoWriter(  gst_pipeline, cv2.CAP_GSTREAMER, 0, 
                                 src_fps, (src_wid, src_hei), True )
         logging.info(f'Define Gstreamer Pipeline: {gst_pipeline}')
-
-        if not out.isOpened():
-            raise Exception("can't open video writer")
+        # assert not out.isOpened(), "can't open video writer"
 
     # Setting Application
     try:
@@ -133,13 +141,15 @@ def main(args):
             draw = frame.copy()
             
             # Inference
-            cur_info = trg.inference( frame, 0 )
-            if(check_info(cur_info)):
-                temp_info, cur_fps = cur_info, temp_fps
+            temp_info = trg.inference( frame )
+
+            if(check_info(temp_info)):
+                cur_info, cur_fps = temp_info, temp_fps
             
             # Drawing result using application and FPS
-            draw, app_info = application(draw, temp_info)
-            draw = draw_fps( draw, cur_fps )
+            if(check_info(cur_info)):
+                draw, app_info = application(draw, cur_info)
+                draw = draw_fps( draw, cur_fps )
 
             # Display draw
             if mode==GUI:
@@ -150,7 +160,8 @@ def main(args):
                 out.write(draw)
 
             # Log
-            # if(app_info): logging.temp_info(app_info)
+            if(check_info(cur_info)): 
+                print(cur_info['detections'])
 
             # Delay inferenece to fix in target fps
             t_cost, t_expect = (time.time()-t_start), (1/src.get_fps())
