@@ -8,7 +8,6 @@ __pycahe__
 # --------------------------------------
 # Plugins
 **/*/*.o
-**/*.so
 **/*.o
 # --------------------------------------
 # Tasks
@@ -35,3 +34,4 @@ release/
 *.log
 temp/
 ivit_i_temp/
+plugins/libyolo_layer.so
