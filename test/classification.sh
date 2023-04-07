@@ -91,9 +91,8 @@ ${RUN_DOWNLOAD_MODEL}
 # Convert Model
 MODEL_PATH="/workspace/model/resnet/resnet34.trt"
 if [[ ! -f ${MODEL_PATH} ]];then
-	trtexec \
+	/usr/src/tensorrt/bin/trtexec \
 	--onnx=/workspace/model/resnet/resnet34.onnx \
-	--batch=1 \
 	--saveEngine=${MODEL_PATH}
 fi
 

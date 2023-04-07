@@ -1,9 +1,9 @@
 {
     "tag": "darknet",
     "tensorrt": {
-        "model_path": "./model/yolov4/yolov4-416.trt",
-        "label_path": "./model/yolov4/coco.txt",
-        "device": "jetson-agx",
+        "model_path": "./model/yolov4-416/yolov4-416.trt",
+        "label_path": "./model/yolov4-416/coco.txt",
+        "device": "nvidia jetson xavier nx developer kit",
         "input_size": "3,416,416",
         "preprocess": "caffe",
         "thres": 0.1,

@@ -63,7 +63,7 @@ def get_gst_pipeline(rtsp_url):
         'appsrc ' + \
         '! videoconvert ' + \
         '! nvvidconv ! video/x-raw(memory:NVMM), format=(string)I420 ' + \
-        '! nvv4l2h264enc bitrate=40000000 insert-sps-pps=true idrinterval=30 profile=0 ' + \
+        '! nvv4l2h264enc bitrate=20480000 insert-sps-pps=true idrinterval=30 profile=0 ' + \
         '! video/x-h264, stream-format=(string)byte-stream ' + \
         f' ! rtspclientsink location={rtsp_url}'
 
@@ -161,7 +161,7 @@ def main(args):
 
             # Log
             if(check_info(cur_info)): 
-                print(cur_info['detections'])
+                print(cur_info)
 
             # Delay inferenece to fix in target fps
             t_cost, t_expect = (time.time()-t_start), (1/src.get_fps())

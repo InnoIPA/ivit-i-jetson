@@ -6,6 +6,7 @@ from .pose import LIST as pose_list
 APP_LIST = {
     'cls'   : cls_list,
     'darknet'   : obj_list,
+    'obj'   : obj_list,
     'seg'   : seg_list,
     'pose'  : pose_list,
 }
