@@ -1,1 +1,0 @@
-tao-converter is download from [TAO Toolkit 3.0-21.08](https://docs.nvidia.com/tao/tao-toolkit-archive/tao-30-2108/text/tensorrt.html#installing-the-tao-converter)
