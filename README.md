@@ -9,8 +9,12 @@ iVIT-I is an AI inference tool which could support multiple AI framework and thi
 # Requirements
 * [Docker 20.10 + ](https://docs.docker.com/engine/install/ubuntu/)
 * [Docker-Compose v2.15.1 ](https://docs.docker.com/compose/install/linux/#install-using-the-repository)
-* you can check via `docker compose version`
-    
+    * you can check via `docker compose version`
+* JetPack 5.0.2+ ( without CUDA is okay! )
+    ![sdkmanager](./assets/images/sdkmanager.png)
+
+* Install [nvidia-docker2](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html)
+
 # Getting Start
 1. Clone Repository
     
@@ -37,7 +41,7 @@ iVIT-I is an AI inference tool which could support multiple AI framework and thi
         ```
 3. Run Samples
 
-    * [Source Sample](samples/classification_sample/README.md)
+    * [Source Sample](samples/ivit_source_sample/README.md)
     * [Displayer Sample](samples/ivit_displayer_sample/README.md)
     * [Classification Sample](samples/classification_sample/README.md)
     * [Object Detection Sample](samples/object_detection_sample/README.md)
