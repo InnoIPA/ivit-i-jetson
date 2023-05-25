@@ -87,12 +87,12 @@ MODEL_PATH="${MODEL_ROOT}/${MODEL_NAME}.trt"
 # Setup Running Script
 DOWNLOAD_SCRIPT="${ROOT}/yolo_download.py"
 MODIFTY_GPU_SCRIPT="${WS}/tools/update_first_gpu.py"
-CONVERT_SCRIPT="${WS}/converter/yolo-converter.sh"
+CONVERT_SCRIPT="${WS}/converter/yolo-converter"
 
 RUN_DOWNLOAD_DATA="${ROOT}/download_data.sh"
 RUN_DOWNLOAD_MODEL="python3 ${DOWNLOAD_SCRIPT} -m ${MODEL_TYPE} -s ${SIZE} -f ${MODEL_ROOT}"
-RUN_CONVERT="${WS}/converter/yolo-converter.sh ${MODEL_ROOT}/${MODEL_NAME} "
-RUN_BUILD_PLUGIN="/workspace/plugins/build_plugin.sh"
+RUN_CONVERT="yolo-converter ${MODEL_ROOT}/${MODEL_NAME} "
+
 
 
 # -----------------------------------------------------
@@ -102,8 +102,7 @@ RUN_BUILD_PLUGIN="/workspace/plugins/build_plugin.sh"
 
 # -----------------------------------------------------
 
-# Build Darknet Plugin
-${RUN_BUILD_PLUGIN}
+
 
 # Download data
 if [[ ${DOWNLOAD_DATA} = true ]];then
