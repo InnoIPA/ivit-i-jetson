@@ -13,7 +13,7 @@ source "${ROOT}/utils.sh"
 # ========================================================
 # Basic Parameters
 CONF="ivit-i.json"
-DOCKER_USER="maxchanginnodisk"
+DOCKER_USER="innodiskorg"
 DOCKER_COMPOSE="./docker/docker-compose.yml"
 
 # ========================================================
@@ -148,5 +148,3 @@ if [[ ${INTERATIVE} = true ]];then
 	printd "Close Relative Container" R
 	docker-compose -f ${DOCKER_COMPOSE} -p ${TAG} down
 fi
-
-exit 0;
