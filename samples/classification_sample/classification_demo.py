@@ -187,7 +187,6 @@ def main():
 
             if args.no_show:
                 # Just logout
-                frame_idx += 1             
                 print_results(
                     detections, model.current_frame_id, 
                     infer_metrx.get_fps() )
