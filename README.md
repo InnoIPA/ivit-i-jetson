@@ -20,7 +20,7 @@ iVIT-I is an AI inference tool which could support multiple AI framework and thi
     
     * Donwload Newest Version
         ```bash
-        git clone  https://github.com/InnoIPA/ivit-i-jetson.git && cd ivit-i-jetson
+        git clone -b v1.3 https://github.com/InnoIPA/ivit-i-jetson.git && cd ivit-i-jetson
         ```
 
 2. Run iVIT-I Docker Container
