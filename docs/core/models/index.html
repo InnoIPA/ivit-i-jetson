@@ -255,6 +255,7 @@ Note: It supports only models with single image input. </p>
 <ul class="hlist">
 <li>ivit_i.core.models.iClassification.iClassification</li>
 <li>ivit_i.core.models.iDetection.iDetection</li>
+<li>ivit_i.core.models.iSegmentation.iSegmentation</li>
 </ul>
 <h3>Methods</h3>
 <dl>
@@ -340,6 +341,77 @@ inputs and outputs are expected to be lists of HostDeviceMem objects.</p></div>
 </dd>
 </dl>
 </dd>
+<dt id="ivit_i.core.models.iSegmentation"><code class="flex name class">
+<span>class <span class="ident">iSegmentation</span></span>
+<span>(</span><span>model_path: str, label_path: str, preproc_mode: str = 'torch', confidence_threshold: float = 0.1, device: Optional[int] = 0, topk: int = 5, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>iModel Object is wrapper for each different model</p>
+<p>iClassification module namespace, exposing factory functions for all ops and other classes.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>model_path</code></strong> :&ensp;<code>str</code></dt>
+<dd>path to model.</dd>
+<dt><strong><code>label_path</code></strong> :&ensp;<code>str</code></dt>
+<dd>path to label file.</dd>
+<dt>confidence_threshold (float):The minimum score that the model will consider the prediction to be a true prediction.</dt>
+<dt><strong><code>device</code></strong> :&ensp;<code>int</code></dt>
+<dd>idx of device , defalt is 0.</dd>
+<dt><strong><code>topk</code></strong> :&ensp;<code>int</code></dt>
+<dd>How many result you want to show.</dd>
+</dl></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="ivit_i.core.models.model.iModel" href="model.html#ivit_i.core.models.model.iModel">iModel</a></li>
+<li>abc.ABC</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="ivit_i.core.models.iSegmentation.postprocess"><code class="name flex">
+<span>def <span class="ident">postprocess</span></span>(<span>self, results: list)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Data postprocess method of a single image:<br>
+-Reshape representation to image.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>results</code></strong> :&ensp;<code>np.ndarray</code></dt>
+<dd>Output of model predict (MASK).</dd>
+</dl></div>
+</dd>
+<dt id="ivit_i.core.models.iSegmentation.preprocess"><code class="name flex">
+<span>def <span class="ident">preprocess</span></span>(<span>self, frame: numpy.ndarray)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Data preprocess method It performs basic preprocessing of a single image:
+- Resizes the image to fit the model input size via the defined resize type
+- Normalizes the image between 0 to 1.
+- Changes the image layout according to the model input layout Also,
+Note: It supports only models with single image input. </p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>frame</code></strong> :&ensp;<code>np.ndarray</code></dt>
+<dd>input image.</dd>
+</dl></div>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="ivit_i.core.models.model.iModel" href="model.html#ivit_i.core.models.model.iModel">iModel</a></b></code>:
+<ul class="hlist">
+<li><code><a title="ivit_i.core.models.model.iModel.clear_runtime" href="model.html#ivit_i.core.models.model.iModel.clear_runtime">clear_runtime</a></code></li>
+<li><code><a title="ivit_i.core.models.model.iModel.cost_time" href="model.html#ivit_i.core.models.model.iModel.cost_time">cost_time</a></code></li>
+<li><code><a title="ivit_i.core.models.model.iModel.do_inference_v2" href="model.html#ivit_i.core.models.model.iModel.do_inference_v2">do_inference_v2</a></code></li>
+<li><code><a title="ivit_i.core.models.model.iModel.get_thres" href="model.html#ivit_i.core.models.model.iModel.get_thres">get_thres</a></code></li>
+<li><code><a title="ivit_i.core.models.model.iModel.inference" href="model.html#ivit_i.core.models.model.iModel.inference">inference</a></code></li>
+<li><code><a title="ivit_i.core.models.model.iModel.init_engine" href="model.html#ivit_i.core.models.model.iModel.init_engine">init_engine</a></code></li>
+<li><code><a title="ivit_i.core.models.model.iModel.release" href="model.html#ivit_i.core.models.model.iModel.release">release</a></code></li>
+<li><code><a title="ivit_i.core.models.model.iModel.set_thres" href="model.html#ivit_i.core.models.model.iModel.set_thres">set_thres</a></code></li>
+<li><code><a title="ivit_i.core.models.model.iModel.store_runtime" href="model.html#ivit_i.core.models.model.iModel.store_runtime">store_runtime</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
 </dl>
 </section>
 </article>
@@ -394,6 +466,13 @@ inputs and outputs are expected to be lists of HostDeviceMem objects.</p></div>
 <li><code><a title="ivit_i.core.models.iModel.release" href="#ivit_i.core.models.iModel.release">release</a></code></li>
 <li><code><a title="ivit_i.core.models.iModel.set_thres" href="#ivit_i.core.models.iModel.set_thres">set_thres</a></code></li>
 <li><code><a title="ivit_i.core.models.iModel.store_runtime" href="#ivit_i.core.models.iModel.store_runtime">store_runtime</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="ivit_i.core.models.iSegmentation" href="#ivit_i.core.models.iSegmentation">iSegmentation</a></code></h4>
+<ul class="">
+<li><code><a title="ivit_i.core.models.iSegmentation.postprocess" href="#ivit_i.core.models.iSegmentation.postprocess">postprocess</a></code></li>
+<li><code><a title="ivit_i.core.models.iSegmentation.preprocess" href="#ivit_i.core.models.iSegmentation.preprocess">preprocess</a></code></li>
 </ul>
 </li>
 </ul>

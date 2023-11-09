@@ -4,7 +4,7 @@ iVIT Classification Sample, this sample demonstrates how to do inference of imag
 ## Getting Start
 * Clone Repository    
     ```bash
-    git clone  https://github.com/InnoIPA/ivit-i-jetson.git && cd ivit-i-jetson
+    git clone https://github.com/InnoIPA/ivit-i-jetson-dev__confidential.git && cd ivit-i-hailoivit-i-jetson-dev__confidential
     ```
 * Run iVIT-I Docker Container
     ```bash
