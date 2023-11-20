@@ -45,7 +45,8 @@ def basic_usage():
         name=args.name, 
         width=src.get_shape()[1], 
         height=src.get_shape()[0], 
-        fps=src.get_fps() )
+        fps=src.get_fps(),
+        platform="jetson" )
     
     if args.rtsp:
         print(dpr.get_rtsp_url())
